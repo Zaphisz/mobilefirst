@@ -1,5 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:mobilefirst/config/constant.dart';
+import 'package:mobilefirst/backend/db_register.dart';
+import 'package:mobilefirst/screen/login.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -142,8 +145,11 @@ Widget btnSubmit(){
     onPressed: (){
       if (formkey.currentState!.validate()) {      
       formkey.currentState!.save();
-      print("ชื่อ:$name นามสกุล:$surname อีเมล:$email รหัสผ่าน:$pass");
+      var local =LocalDB();
+      local.Register(name,surname,email,pass);
+      Navigator.pushNamed(context, 'login');
       }
+      
     },
   );
 }
